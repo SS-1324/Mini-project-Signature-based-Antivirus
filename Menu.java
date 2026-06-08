@@ -32,6 +32,7 @@ public class Menu {
 			System.out.println("6. 격리소 목록 보기");
 			System.out.println("7. 격리소 완전히 비우기");
 			System.out.println("8. 텍스트 파일에서 최신 DB 불러오기");
+			System.out.println("9. 파일 예외 처리 (파일 격리 해제)");
 			System.out.println("0. 프로그램 종료");
 			System.out.print("번호를 입력하세요 : ");
 			
@@ -93,6 +94,17 @@ public class Menu {
 			case 8:
 				db.loadPatternFromFile();
 				break;
+				
+			 case 9:
+			     System.out.print("복구할 격리 파일의 이름을 입력하세요: ");
+			     String targetFile = sc.nextLine();
+			     
+			     boolean isRestored = manager.allowFile(targetFile);
+			     
+			     if (isRestored) {
+			         db.addWhiteList(targetFile); // 다음 스캔부터는 잡히지 않는다.
+			     }
+			     break;    
 				
 			case 0:
 				System.out.println("백신 프로그램을 종료합니다.");
