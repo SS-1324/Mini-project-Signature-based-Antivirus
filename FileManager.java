@@ -46,7 +46,7 @@ public class FileManager {
     public void editFileContent(String fileName, String newContent) {
         VirtualFile file = findFile(fileName);
         if (file != null) {
-        	//추가 : 격리 태그가 달린 파일은 접근 불가!
+        	// 격리 태그가 달린 파일은 접근 불가
         	if (file.getStatus().equals("격리")) {
                 System.out.println("위험한 파일의 이름은 수정할 수 없습니다.");
                 return;
