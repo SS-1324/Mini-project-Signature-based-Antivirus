@@ -44,7 +44,7 @@ public class DB {
 	
 	//악성 파일 검사
 	public boolean isMalware(VirtualFile file) {
-	    // 블랙리스트에 있는 파일 검사!
+	    // 블랙리스트에 있는 파일 검사
 	    String content = file.getContent().toLowerCase(); //대소문자 구분 없이 검사되도록 toLowerCase 사용
 	    for (String pattern : blackList) { //패턴이 블랙리스트에 있는지 한 줄씩 검사
 	        if (content.contains(pattern.toLowerCase())) {
