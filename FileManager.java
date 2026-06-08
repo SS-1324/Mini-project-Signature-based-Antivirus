@@ -105,6 +105,27 @@ public class FileManager {
 			System.out.println("======================\n");
 		}
 		
+		//격리된 파일을 '허용'상태로 바꾸는 메서드
+		public boolean allowFile(String fileName) {
+	        Iterator<VirtualFile> iterator = quarantineList.iterator();
+	        
+	        while (iterator.hasNext()) {
+	            VirtualFile file = iterator.next();
+	            
+	            if (file.getFileName().equals(fileName)) {
+	                file.setStatus("허용"); // 파일의 상태를 허용으로 바꿈
+	                fileList.add(file); // 일반 파일 목록으로 다시 이동
+	                iterator.remove(); //격리소에서는 삭제
+	                
+	                System.out.println("[ " + fileName + " ] 파일이 허용되었습니다.");
+	                return true;
+	            }
+	        }
+	        
+	        System.out.println("파일을 찾을 수 없습니다."); // 파일을 못 찾았음을 알림
+	        return false; 
+	    }
+		
 		public void emptyQuarantine() {
 			if(quarantineList.isEmpty()) {
 				System.out.println("격리소가 비었습니다");
